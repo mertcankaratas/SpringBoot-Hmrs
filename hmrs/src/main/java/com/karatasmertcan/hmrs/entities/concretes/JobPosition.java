@@ -10,14 +10,14 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="JobPositions")
+@Table(name="jobpositions")
 public class JobPosition {
 	@Id
 	@GeneratedValue
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="JobTitle")
+	@Column(name="job_title")
 	private String jobTitle;
 
 	
