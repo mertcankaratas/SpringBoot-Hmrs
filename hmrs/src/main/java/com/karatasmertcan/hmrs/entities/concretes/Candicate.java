@@ -11,22 +11,22 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="Candicates")
+@Table(name="candicates")
 public class Candicate {
 	@Id
-	@Column(name="CandicateId")
+	@Column(name="candicate_id")
 	private int candicateId;
 	
-	@Column(name="Name")
+	@Column(name="name")
 	private String name;
 	
-	@Column(name="SurName")
+	@Column(name="sur_name")
 	private String lastName;
 	
-	@Column(name="BirthDate")
+	@Column(name="birth_date")
 	private Date  birthDate;
 	
-	@Column(name="IdentityNumber")
+	@Column(name="identity_number")
 	private String identityNumber;
 
 	

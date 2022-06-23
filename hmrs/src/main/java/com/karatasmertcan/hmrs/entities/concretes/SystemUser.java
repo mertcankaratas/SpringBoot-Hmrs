@@ -9,16 +9,16 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="SystemUsers")
+@Table(name="systemusers")
 public class SystemUser {
 	@Id
-	@Column(name="SystemUserId")
+	@Column(name="system_user_id")
 	private int systemUserId;
 	
-	@Column(name="Name")
+	@Column(name="name")
 	private String name;
 	
-	@Column(name="SurName")
+	@Column(name="sur_name")
 	private String surName;
 
 	public SystemUser() {

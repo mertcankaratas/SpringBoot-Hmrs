@@ -9,19 +9,19 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="Employers")
+@Table(name="employers")
 public class Employer {
 	@Id
-	@Column(name="EmployerId")
+	@Column(name="employer_id")
 	private int employerId;
 	
-	@Column(name="CompanyName")
+	@Column(name="company_name")
 	private String companyName;
 	
-	@Column(name="WebPage")
+	@Column(name="web_page")
 	private String webPage;
 	
-	@Column(name="PhoneNumber")
+	@Column(name="phone_number")
 	private String phoneNumber;
 	
 	public Employer() {
