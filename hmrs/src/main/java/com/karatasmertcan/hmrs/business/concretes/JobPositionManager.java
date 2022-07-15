@@ -24,4 +24,18 @@ public class JobPositionManager implements JobPositionService {
 		return this.jobPositionDao.findAll();
 	}
 
+	@Override
+	public List<JobPosition> getByJobTitle(String jobTitle) {
+		// TODO Auto-generated method stub
+		return this.jobPositionDao.findByJobTitle(jobTitle);
+	}
+
+	@Override
+	public void Add(JobPosition jobPosition) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 }

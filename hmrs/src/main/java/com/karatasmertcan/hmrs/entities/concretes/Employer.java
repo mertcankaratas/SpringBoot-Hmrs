@@ -5,12 +5,18 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name="employers")
-public class Employer {
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper=false)
+public class Employer extends User {
 	@Id
 	@Column(name="employer_id")
 	private int employerId;
@@ -24,16 +30,6 @@ public class Employer {
 	@Column(name="phone_number")
 	private String phoneNumber;
 	
-	public Employer() {
-		
-	}
-
-	public Employer(int employerId, String companyName, String webPage, String phoneNumber) {
-		super();
-		this.employerId = employerId;
-		this.companyName = companyName;
-		this.webPage = webPage;
-		this.phoneNumber = phoneNumber;
-	}
+	
 	
 }

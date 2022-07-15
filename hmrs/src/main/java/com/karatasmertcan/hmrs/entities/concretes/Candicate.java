@@ -7,12 +7,18 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name="candicates")
-public class Candicate {
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper=false)
+public class Candicate extends User {
 	@Id
 	@Column(name="candicate_id")
 	private int candicateId;
@@ -30,18 +36,7 @@ public class Candicate {
 	private String identityNumber;
 
 	
-	public Candicate() {
-		
-	}
 	
-	public Candicate(int candicateId, String name, String lastName, Date birthDate, String identityNumber) {
-		super();
-		this.candicateId = candicateId;
-		this.name = name;
-		this.lastName = lastName;
-		this.birthDate = birthDate;
-		this.identityNumber = identityNumber;
-	}
 	
 	
 	

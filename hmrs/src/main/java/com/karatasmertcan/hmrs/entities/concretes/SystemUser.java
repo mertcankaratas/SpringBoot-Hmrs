@@ -5,12 +5,18 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name="systemusers")
-public class SystemUser {
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper=false)
+public class SystemUser extends User {
 	@Id
 	@Column(name="system_user_id")
 	private int systemUserId;
@@ -21,15 +27,7 @@ public class SystemUser {
 	@Column(name="sur_name")
 	private String surName;
 
-	public SystemUser() {
-		
-	}
-	public SystemUser(int systemUserId, String name, String surName) {
-		super();
-		this.systemUserId = systemUserId;
-		this.name = name;
-		this.surName = surName;
-	}
+	
 	
 	
 }
