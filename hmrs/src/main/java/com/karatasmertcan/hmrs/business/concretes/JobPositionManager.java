@@ -6,6 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.karatasmertcan.hmrs.business.abstracts.JobPositionService;
+import com.karatasmertcan.hmrs.core.utilities.DataResult;
+import com.karatasmertcan.hmrs.core.utilities.ErrorDataResult;
+import com.karatasmertcan.hmrs.core.utilities.ErrorResult;
+import com.karatasmertcan.hmrs.core.utilities.Result;
+import com.karatasmertcan.hmrs.core.utilities.SuccessDataResult;
+import com.karatasmertcan.hmrs.core.utilities.SuccessResult;
 import com.karatasmertcan.hmrs.dataAccess.abstracts.JobPositionDao;
 import com.karatasmertcan.hmrs.entities.concretes.JobPosition;
 
@@ -13,6 +19,7 @@ import com.karatasmertcan.hmrs.entities.concretes.JobPosition;
 public class JobPositionManager implements JobPositionService {
 	
 	private JobPositionDao jobPositionDao;
+	
 	@Autowired
 	public JobPositionManager(JobPositionDao jobPositionDao) {
 		super();
@@ -20,20 +27,37 @@ public class JobPositionManager implements JobPositionService {
 	}
 
 	@Override
-	public List<JobPosition> getAll() {
-		return this.jobPositionDao.findAll();
+	public DataResult<List<JobPosition>> getAll() {
+		return new SuccessDataResult<List<JobPosition>>( this.jobPositionDao.findAll());
 	}
 
 	@Override
-	public List<JobPosition> getByJobTitle(String jobTitle) {
+	public DataResult<JobPosition> getByJobTitle(String jobTitle) {
 		// TODO Auto-generated method stub
-		return this.jobPositionDao.findByJobTitle(jobTitle);
+		return new SuccessDataResult<JobPosition>(this.jobPositionDao.findByJobTitle(jobTitle));
 	}
 
 	@Override
-	public void Add(JobPosition jobPosition) {
-		// TODO Auto-generated method stub
+	public Result add(JobPosition jobPosition) {
 		
+		if(checkIfExitstJobPosition(jobPosition.getJobTitle())) {
+			this.jobPositionDao.save(jobPosition);
+			return new SuccessResult("İş pozisyonu Eklendi");
+		}
+		
+		return new ErrorResult("İş baslıgı eklenemedi");
+		
+	}
+	
+	
+	public boolean checkIfExitstJobPosition(String jobTitle) {
+		
+		var job= getByJobTitle(jobTitle);
+		if(job.getData()==null) {
+			return true;
+		}
+		
+		return false;
 	}
 
 

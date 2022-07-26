@@ -2,30 +2,72 @@ package com.karatasmertcan.hmrs.business.concretes;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.karatasmertcan.hmrs.business.abstracts.CandicateService;
+import com.karatasmertcan.hmrs.business.abstracts.UserService;
+import com.karatasmertcan.hmrs.core.utilities.DataResult;
+import com.karatasmertcan.hmrs.core.utilities.ErrorResult;
+import com.karatasmertcan.hmrs.core.utilities.Result;
+import com.karatasmertcan.hmrs.core.utilities.SuccessDataResult;
+import com.karatasmertcan.hmrs.core.utilities.SuccessResult;
 import com.karatasmertcan.hmrs.dataAccess.abstracts.CandicateDao;
 import com.karatasmertcan.hmrs.entities.concretes.Candicate;
-
+@Service
 public class CandicateManager implements CandicateService {
 
 	private CandicateDao candicateDao;
+	private UserService userService;
 	
-	
-	
-	public CandicateManager(CandicateDao candicateDao) {
+	@Autowired
+	public CandicateManager(CandicateDao candicateDao, UserService userSevice) {
 		super();
 		this.candicateDao = candicateDao;
+		this.userService = userSevice;
 	}
 
-	public void Add(Candicate candicate) {
-		// TODO Auto-generated method stub
+
+
+	@Override
+	public Result add(Candicate candicate) {
+		if(!checkCandicateIfExist(candicate)) {
+			this.candicateDao.save(candicate);
+			return new SuccessResult("Başırı ile kayıt olundu");
+		}
+		
+		return new ErrorResult("Email veya Tc Kimlik numarası daha önce kullanılmıştır");
 		
 	}
 
+
+
 	@Override
-	public List<Candicate> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public DataResult<List<Candicate>> getAll() {
+		
+		return new SuccessDataResult<List<Candicate>>(this.candicateDao.findAll(),"İş arayanlar listelendi");
+	}
+
+	
+	
+	private boolean checkCandicateIfExist(Candicate candicate) {
+		
+		 var mailCheck =userService.getByMail(candicate.getEmail());
+		 var identityNumberCheck = getByIdentityNumber(candicate.getIdentityNumber());
+		 
+		 if(mailCheck.getData()==null && identityNumberCheck.getData()==null) {
+			 return false;
+		 }
+		
+		return true;
+	}
+
+
+
+	@Override
+	public DataResult<Candicate> getByIdentityNumber(String identityNumber) {
+		
+		return new SuccessDataResult<Candicate>(this.candicateDao.getByIdentityNumber(identityNumber),identityNumber+" kimlik numaralı kişi");
 	}
 
 	

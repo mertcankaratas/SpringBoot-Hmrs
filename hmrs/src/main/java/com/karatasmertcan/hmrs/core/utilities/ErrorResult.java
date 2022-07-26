@@ -2,11 +2,11 @@ package com.karatasmertcan.hmrs.core.utilities;
 
 public class ErrorResult extends Result{
 
-	public ErrorResult(boolean success) {
+	public ErrorResult() {
 		super(false);
 	}
 	
-	public ErrorResult(boolean success,String message) {
+	public ErrorResult(String message) {
 		super(false,message);
 	}
 

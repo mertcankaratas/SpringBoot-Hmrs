@@ -1,10 +1,12 @@
 package com.karatasmertcan.hmrs.entities.concretes;
 
-import java.sql.Date;
+
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -17,12 +19,10 @@ import lombok.NoArgsConstructor;
 @Table(name="candicates")
 @AllArgsConstructor
 @NoArgsConstructor
+@PrimaryKeyJoinColumn(name="candicate_id", referencedColumnName = "id")
 @EqualsAndHashCode(callSuper=false)
 public class Candicate extends User {
-	@Id
-	@Column(name="candicate_id")
-	private int candicateId;
-	
+		
 	@Column(name="name")
 	private String name;
 	
@@ -30,7 +30,7 @@ public class Candicate extends User {
 	private String lastName;
 	
 	@Column(name="birth_date")
-	private Date  birthDate;
+	private LocalDate birthDate;
 	
 	@Column(name="identity_number")
 	private String identityNumber;

@@ -3,6 +3,7 @@ package com.karatasmertcan.hmrs.entities.concretes;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -15,11 +16,10 @@ import lombok.NoArgsConstructor;
 @Table(name="systemusers")
 @AllArgsConstructor
 @NoArgsConstructor
+@PrimaryKeyJoinColumn(name="system_user_id", referencedColumnName = "id")
 @EqualsAndHashCode(callSuper=false)
 public class SystemUser extends User {
-	@Id
-	@Column(name="system_user_id")
-	private int systemUserId;
+	
 	
 	@Column(name="name")
 	private String name;

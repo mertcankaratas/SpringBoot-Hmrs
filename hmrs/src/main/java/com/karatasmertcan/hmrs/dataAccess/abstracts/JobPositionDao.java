@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.karatasmertcan.hmrs.entities.concretes.JobPosition;
 
 public interface JobPositionDao extends JpaRepository<JobPosition, Integer> {
-		List<JobPosition> findByJobTitle(String jobTitle);
+		JobPosition findByJobTitle(String jobTitle);
 }
