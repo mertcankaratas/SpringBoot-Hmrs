@@ -3,6 +3,7 @@ package com.karatasmertcan.hmrs.business.concretes;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.karatasmertcan.hmrs.business.abstracts.EmployerService;
 import com.karatasmertcan.hmrs.business.abstracts.UserService;
@@ -13,7 +14,7 @@ import com.karatasmertcan.hmrs.core.utilities.SuccessDataResult;
 import com.karatasmertcan.hmrs.core.utilities.SuccessResult;
 import com.karatasmertcan.hmrs.dataAccess.abstracts.EmployerDao;
 import com.karatasmertcan.hmrs.entities.concretes.Employer;
-
+@Service
 public class EmployerManager implements EmployerService {
 
 	private EmployerDao employerDao;

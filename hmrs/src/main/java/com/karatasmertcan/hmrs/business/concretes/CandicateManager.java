@@ -2,11 +2,14 @@ package com.karatasmertcan.hmrs.business.concretes;
 
 import java.util.List;
 
+import javax.validation.constraints.Null;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.karatasmertcan.hmrs.business.abstracts.CandicateService;
 import com.karatasmertcan.hmrs.business.abstracts.UserService;
+import com.karatasmertcan.hmrs.core.adapters.MernisServiceAdapter;
 import com.karatasmertcan.hmrs.core.utilities.DataResult;
 import com.karatasmertcan.hmrs.core.utilities.ErrorResult;
 import com.karatasmertcan.hmrs.core.utilities.Result;
@@ -19,22 +22,24 @@ public class CandicateManager implements CandicateService {
 
 	private CandicateDao candicateDao;
 	private UserService userService;
-	
+	private MernisServiceAdapter mernisServiceAdapter;
 	@Autowired
-	public CandicateManager(CandicateDao candicateDao, UserService userSevice) {
+	public CandicateManager(CandicateDao candicateDao, UserService userSevice,MernisServiceAdapter mernisServiceAdapter) {
 		super();
 		this.candicateDao = candicateDao;
 		this.userService = userSevice;
+		this.mernisServiceAdapter =mernisServiceAdapter;
 	}
 
 
 
 	@Override
 	public Result add(Candicate candicate) {
-		if(!checkCandicateIfExist(candicate)) {
+		if(businessRules(candicate)) {
 			this.candicateDao.save(candicate);
 			return new SuccessResult("Başırı ile kayıt olundu");
 		}
+		
 		
 		return new ErrorResult("Email veya Tc Kimlik numarası daha önce kullanılmıştır");
 		
@@ -61,6 +66,16 @@ public class CandicateManager implements CandicateService {
 		
 		return true;
 	}
+	
+	private boolean checkIfIdentityNumber(Candicate candicate) {
+		
+		if(this.mernisServiceAdapter.checkIfRealPerson(candicate.getIdentityNumber(), candicate.getName(), candicate.getLastName(), candicate.getBirthDate())) {
+			return true;
+		}
+		
+		return false;
+		
+	}
 
 
 
@@ -68,6 +83,19 @@ public class CandicateManager implements CandicateService {
 	public DataResult<Candicate> getByIdentityNumber(String identityNumber) {
 		
 		return new SuccessDataResult<Candicate>(this.candicateDao.getByIdentityNumber(identityNumber),identityNumber+" kimlik numaralı kişi");
+	}
+	
+	
+	public boolean businessRules(Candicate candicate) {
+		
+		
+		
+		if(!checkCandicateIfExist(candicate)&& checkIfIdentityNumber(candicate)==true) {
+			return true;
+		}
+		
+		
+		return false;
 	}
 
 	
