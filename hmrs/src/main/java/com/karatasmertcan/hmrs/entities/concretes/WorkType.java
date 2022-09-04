@@ -1,5 +1,7 @@
 package com.karatasmertcan.hmrs.entities.concretes;
 
+
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,38 +11,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Length;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @Entity
-@Table(name="jobpositions")
+@Table(name="work_types")
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class JobPosition {
+public class WorkType {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-	private int id;
+	@Column(name ="work_type_id")
+	private int workTypeId;
 	
+	@Column(name="work_type_name")
+	private String workTypeName;
+
 	
-
-	@NotEmpty()
-	@NotNull
-	@Length(min=3)
-	@Column(name="job_title")
-	private String jobTitle;
-
-	@OneToMany(mappedBy = "jobPosition")
+	@OneToMany(mappedBy = "workType")
 	private List<JobAdvertisement> jobAdvertisements;
-	
-	
-	
 }
