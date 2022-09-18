@@ -38,7 +38,7 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		
 		this.modelMapper.getConfiguration().setAmbiguityIgnored(true);
         JobAdvertisement jobAdvertisement = this.modelMapper.map(jobAdvertisementDto,JobAdvertisement.class);
-        //jobAdvertisement.setJobAdvertisementId(0);
+        jobAdvertisement.setJobAdvertisementId(0);
 		this.jobAdvertisementDao.save(jobAdvertisement);
 		return new SuccessResult("İş ilanı başarı ile eklendi");
 	}
