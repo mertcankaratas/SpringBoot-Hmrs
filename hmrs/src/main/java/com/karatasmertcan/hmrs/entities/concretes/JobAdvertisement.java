@@ -1,6 +1,8 @@
 package com.karatasmertcan.hmrs.entities.concretes;
 
-import java.time.LocalDate;
+
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,22 +34,23 @@ public class JobAdvertisement {
 	private int jobAdvertisementId;
 
 	@ManyToOne()
-	@JsonIgnore
+	@JsonManagedReference
 	@JoinColumn(name="job_position_id")
 	private JobPosition jobPosition;
 	
 	@ManyToOne()
-	@JsonIgnore
+	@JsonManagedReference
 	@JoinColumn(name="employer_id")
 	private Employer employer;
 	 
 	 
 	@ManyToOne()
-	@JsonIgnore
+	@JsonManagedReference
 	@JoinColumn(name="city_id")
 	private City city;
 	
 	@ManyToOne()
+	@JsonManagedReference
 	@JoinColumn(name ="work_type_id")
 	private WorkType workType;
 	
@@ -61,12 +66,14 @@ public class JobAdvertisement {
 	
 	@Column(name = "max_salary")
 	private int maxSalary;
-	
-	@Column(name = "due_date")
-	private LocalDate dueDate;
 
 	@Column(name = "release_date")
-	private LocalDate releaseDate;
+	private Date releaseDate;
+
+	@Column(name = "due_date")
+	private Date dueDate;
+
+
 	
 	@Column(name = "state")
 	private boolean state;

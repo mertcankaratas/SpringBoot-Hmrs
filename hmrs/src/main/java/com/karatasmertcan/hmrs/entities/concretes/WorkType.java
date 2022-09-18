@@ -12,7 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,7 +25,7 @@ import lombok.NoArgsConstructor;
 @Table(name="work_types")
 @AllArgsConstructor
 @NoArgsConstructor
-
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisement"})
 public class WorkType {
 
 	@Id
@@ -37,5 +38,6 @@ public class WorkType {
 
 	
 	@OneToMany(mappedBy = "workType")
+	@JsonBackReference
 	private List<JobAdvertisement> jobAdvertisements;
 }

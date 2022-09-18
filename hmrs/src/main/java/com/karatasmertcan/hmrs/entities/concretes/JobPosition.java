@@ -14,6 +14,9 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,7 +26,7 @@ import lombok.NoArgsConstructor;
 @Table(name="jobpositions")
 @AllArgsConstructor
 @NoArgsConstructor
-
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisement"})
 public class JobPosition {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,6 +42,7 @@ public class JobPosition {
 	private String jobTitle;
 
 	@OneToMany(mappedBy = "jobPosition")
+	@JsonBackReference
 	private List<JobAdvertisement> jobAdvertisements;
 	
 	
