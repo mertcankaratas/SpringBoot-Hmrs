@@ -1,4 +1,4 @@
-package com.karatasmertcan.hmrs.entities.concretes;
+package com.karatasmertcan.hmrs.core.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

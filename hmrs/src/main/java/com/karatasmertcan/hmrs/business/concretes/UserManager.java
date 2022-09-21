@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.karatasmertcan.hmrs.business.abstracts.UserService;
+import com.karatasmertcan.hmrs.core.dataAccess.UserDao;
+import com.karatasmertcan.hmrs.core.entities.User;
 import com.karatasmertcan.hmrs.core.utilities.DataResult;
 import com.karatasmertcan.hmrs.core.utilities.Result;
 import com.karatasmertcan.hmrs.core.utilities.SuccessDataResult;
 import com.karatasmertcan.hmrs.core.utilities.SuccessResult;
-import com.karatasmertcan.hmrs.dataAccess.abstracts.UserDao;
-import com.karatasmertcan.hmrs.entities.concretes.User;
 
 @Service
 public class UserManager implements UserService{
