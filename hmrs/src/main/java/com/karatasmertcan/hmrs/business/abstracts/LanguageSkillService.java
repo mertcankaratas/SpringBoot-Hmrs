@@ -11,5 +11,5 @@ public interface LanguageSkillService {
 
 	Result add (LanguageSkill languageSkill);
 	DataResult<List<LanguageSkill>> getAll();
-	Result update(LanguageSkill languageSkil);
+	Result update(LanguageSkill languageSkill);
 }
