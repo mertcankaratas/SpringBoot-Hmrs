@@ -5,10 +5,11 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.karatasmertcan.hmrs.core.entities.User;
 
 import lombok.AllArgsConstructor;
@@ -37,6 +38,10 @@ public class Candicate extends User {
 	@Column(name="identity_number")
 	private String identityNumber;
 
+	
+	@OneToOne(mappedBy = "candicate")
+	@JsonBackReference
+	private Resume resume;
 	
 	
 	
