@@ -1,4 +1,4 @@
-package com.karatasmertcan.hmrs.core.adapters;
+package com.karatasmertcan.hmrs.core.adapters.mernis;
 
 import java.rmi.RemoteException;
 import java.time.LocalDate;
@@ -9,7 +9,7 @@ import tr.gov.nvi.tckimlik.WS.KPSPublicSoap;
 import tr.gov.nvi.tckimlik.WS.KPSPublicSoapProxy;
 
 @Service
-public class MernisAdapterManager implements MernisServiceAdapter {
+public class MernisServiceAdapter implements MernisService {
 
 	
 	public boolean checkIfRealPerson(String identityNumber, String firstName, String lastName, LocalDate dateOfBirth) {

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.karatasmertcan.hmrs.business.abstracts.CandicateService;
 import com.karatasmertcan.hmrs.business.abstracts.UserService;
-import com.karatasmertcan.hmrs.core.adapters.MernisServiceAdapter;
+import com.karatasmertcan.hmrs.core.adapters.mernis.MernisService;
 import com.karatasmertcan.hmrs.core.utilities.DataResult;
 import com.karatasmertcan.hmrs.core.utilities.ErrorResult;
 import com.karatasmertcan.hmrs.core.utilities.Result;
@@ -22,9 +22,9 @@ public class CandicateManager implements CandicateService {
 
 	private CandicateDao candicateDao;
 	private UserService userService;
-	private MernisServiceAdapter mernisServiceAdapter;
+	private MernisService mernisServiceAdapter;
 	@Autowired
-	public CandicateManager(CandicateDao candicateDao, UserService userSevice,MernisServiceAdapter mernisServiceAdapter) {
+	public CandicateManager(CandicateDao candicateDao, UserService userSevice,MernisService mernisServiceAdapter) {
 		super();
 		this.candicateDao = candicateDao;
 		this.userService = userSevice;
